@@ -65,7 +65,7 @@
    $is_b_instr = $instr[6:2] == 5'b11000;
    $is_j_instr = $instr[6:2] == 5'b11011;
    
-   `BOGUS_USE($dec_bits $rs2 $rs1 $rd $rs2_valid $rs1_valid $funct3_valid $rd_valid $imm_valid $imm)
+   `BOGUS_USE($dec_bits $rd $funct3_valid $rd_valid $imm_valid $imm)
    
    $rs2[4:0]    = $instr[24:20];
    $rs1[4:0]    = $instr[19:15];
@@ -102,7 +102,7 @@
    *passed = 1'b0;
    *failed = *cyc_cnt > M4_MAX_CYC;
    
-   //m4+rf(32, 32, $reset, $wr_en, $wr_index[4:0], $wr_data[31:0], $rd_en1, $rd_index1[4:0], $rd_data1, $rd_en2, $rd_index2[4:0], $rd_data2)
+   m4+rf(32, 32, $reset, $wr_en, $wr_index[4:0], $wr_data[31:0], $rs1_valid, $rs1[4:0], $src1_value, $rs2_valid, $rs2[4:0], $src2_value)
    //m4+dmem(32, 32, $reset, $addr[4:0], $wr_en, $wr_data[31:0], $rd_en, $rd_data)
    m4+cpu_viz()
 \SV
